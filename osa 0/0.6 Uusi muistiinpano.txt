@@ -15,7 +15,6 @@ end note
 käyttäjä -> selain: käyttäjä painaa tallenna-nappia
 
 
-selain -> palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
 
 note over selain 
 selaimen lataamassa "spa.js" Javascript-tiedostossa
@@ -43,6 +42,9 @@ selain lähettää palvelimelle HTTP POST
 olevan uuden muistiinpanon, johon kuuluu 
 sekä sisältö (content), että aikaleima (date)
 end note
+
+selain -> palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+
 
 note over palvelin
 palvelin parsii JSON-datan
