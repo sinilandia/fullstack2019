@@ -1,0 +1,66 @@
+title Fullstack 2019, osa 0 // 0.6 Uusi muistiinpano
+
+
+note over käyttäjä
+käyttäjä on sivustolla 
+https://fullstack-exampleapp.herokuapp.com/spa
+end note
+
+note over käyttäjä
+käyttäjä kirjoittaa uuden 
+muistiinpanon tekstikenttään
+end note
+
+
+käyttäjä -> selain: käyttäjä painaa tallenna-nappia
+
+
+selain -> palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+
+note over selain 
+selaimen lataamassa "spa.js" Javascript-tiedostossa
+oleva koodi hakee sivulta lomake-elementin ja 
+rekisteröi sille tapahtumankäsittelijän hoitamaan 
+tilanteen, missä lomake "submitoidaan", eli lähetetään. 
+Tapahtumankäsittelijä kutsuu heti metodia 
+e.preventDefault(), jolla se estää lomakkeen 
+lähetyksen oletusarvoisen toiminnan. 
+(Oletusarvoinen toiminta aiheuttaisi lomakkeen 
+lähettämisen ja sivun uudelleen lataamisen.)
+Tämän jälkeen tapahtumankäsittelijä luo muistiinpanon, 
+lisää sen muistiinpanojen listalle komennolla 
+notes.push(note).
+end note
+
+note over selain
+tapahtumankäsittelijä piirtää ruudun sisällön eli 
+muistiinpanojen listan uudelleen.
+end note
+
+note over selain 
+selain lähettää palvelimelle HTTP POST
+-pyynnön, joka sisältää JSON-merkkijonona 
+olevan uuden muistiinpanon, johon kuuluu 
+sekä sisältö (content), että aikaleima (date)
+end note
+
+note over palvelin
+palvelin parsii JSON-datan
+end note  
+
+palvelin --> selain: palvelin vastaa STATUS CODE 201 Created
+
+note over selain 
+selain pysyy samalla sivulla 
+eikä muita HTTP-pyyntöjä suoriteta
+end note
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,73 @@
+title Fullstack 2019, osa 0 // 0.4 Uusi muistiinpano
+
+
+
+note over käyttäjä
+käyttäjä on sivustolla 
+https://fullstack-exampleapp.herokuapp.com/notes
+end note
+
+note over käyttäjä
+käyttäjä kirjoittaa tekstikenttään, eli form-elementtiin,
+muistiinpanon
+end note
+
+käyttäjä -> selain: käyttäjä painaa "tallenna" -nappia
+
+note over selain 
+selain lähettää lomakkeelle syötetyn muistiinpanon palvelimelle
+end note 
+
+selain -> palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note
+
+note over palvelin
+palvelin luo uutta muistiinpanoa 
+vastaavan olion ja laittaa sen muistiinpanot 
+sisältävään taulukkoon nimeltä notes
+end note
+
+note over palvelin
+muistiinpano-olioilla on kaksi kenttää, 
+varsinaisen sisällön kuvaava content 
+ja luomishetken kertova date
+end note
+
+palvelin-->selain: STATUS CODE 302 Found eli redirectaus
+
+note over palvelin
+palvelin kehottaa selainta tekemään 
+automaattisesti uuden HTTP GET -pyynnön 
+headerin Location kertomaan paikkaan, 
+eli osoitteeseen notes
+end note
+
+
+selain -> palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
+palvelin-->selain: HTML-koodi
+
+selain -> palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+palvelin-->selain: main.css
+
+selain -> palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+palvelin-->selain: main.js
+
+note over selain 
+selain alkaa suorittamaan js-koodia,
+joka pyytää JSON-datan pavelimelta
+end note 
+
+selain -> palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+palvelin-->selain: data.json
+
+note over palvelin
+palvelin palauttaa muistiinpanot JSON-muodossa
+end note 
+
+note over selain
+selain suorittaa tapahtumakäsittelijän,
+joka renderöi muistiinpanot näytölle
+end note
+
+
+
+

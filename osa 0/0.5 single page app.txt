@@ -1,0 +1,37 @@
+title Fullstack 2019 osa 0 // 0.5 single page app
+
+käyttäjä -> selain: käyttäjä menee osoitteeseen https://fullstack-exampleapp.herokuapp.com/spa
+
+
+
+
+
+
+selain -> palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/spa
+palvelin --> selain: HTML-koodi
+
+selain -> palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+palvelin --> selain: main.css
+
+selain -> palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/spa.js
+palvelin  --> selain : spa.js
+
+note over selain 
+selain alkaa suorittaa js-koodia,
+joka pyytää JSON-datan palvelimelta
+end note
+
+selain -> palvelin : HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+palvelin --> selain : data.json
+
+note over selain 
+selain suorittaa tapahtumakäsittelijän,
+joka renderöi DOM-apia hyväksikäyttäen 
+muistiinpanot ruudulle
+end note
+
+
+
+
+
+
