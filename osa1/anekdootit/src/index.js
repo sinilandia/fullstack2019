@@ -30,34 +30,35 @@ const generateRandomNumber = (value) => {
     )
 }
 
-const addVotes = (selected) => {
-    const copy = [...votes]
-    console.log([copy])
-    console.log([votes])
-    copy[selected] = +1
+const addVotes = (props) => {
+    const copy = [...props.votes]
+    copy[props.selected] = +1
+    const palauta = copy[props.selected]
     return (
-        copy[selected]
+        palauta
     )
-}
-
-const setToVotes = (props) => {
-    votes[props.selected] = props.value
 }
 
 
 
 const App = (props) => {
     const [selected, setSelected] = useState(0)
+    const [votes = new Array(anecdotes.length).fill(0), setVotes] = useState(0)
 
     const setToSelected = newValue => {
         setSelected(newValue)
     }
 
+    const setToVotes = newVote => {
+        setVotes(newVote)
+    }
+
     return (
         <div>
             <p>{props.anecdotes[selected]}</p>
+            <p>ääniä: {votes[selected]}</p>
             <Button handleClick={() => setToSelected(generateRandomNumber(selected))} text="next anecdote" />
-            <Button handleClick={() => setToVotes(selected={selected}, value=>{addVotes(selected)})} text="vote" />
+            <Button handleClick={() => setToVotes(addVotes(props.selected={selected}, props.votes={votes}))} text="vote" />
         </div>
     )
 }
@@ -70,8 +71,6 @@ const anecdotes = [
     'Premature optimization is the root of all evil.',
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
 ]
-
-var votes = new Array(anecdotes.length).fill(0)
 
 ReactDOM.render(
     <App anecdotes={anecdotes} />,
