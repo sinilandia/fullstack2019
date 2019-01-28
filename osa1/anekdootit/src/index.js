@@ -30,36 +30,34 @@ const generateRandomNumber = (value) => {
     )
 }
 
-const addVotes = props => {
-    const copy = [...props.votes]
+const addVotes = (selected) => {
+    const copy = [...votes]
     console.log([copy])
-    console.log([props.votes])
-    copy[props.selected] = +1
+    console.log([votes])
+    copy[selected] = +1
     return (
-        copy
+        copy[selected]
     )
+}
+
+const setToVotes = (props) => {
+    votes[props.selected] = props.value
 }
 
 
 
 const App = (props) => {
     const [selected, setSelected] = useState(0)
-    const votes = new Array(anecdotes.length).fill(0)
 
     const setToSelected = newValue => {
         setSelected(newValue)
     }
 
-    const setToVotes = newArray => {
-        votes = newArray.map(value => value)
-    }
-
-
     return (
         <div>
             <p>{props.anecdotes[selected]}</p>
             <Button handleClick={() => setToSelected(generateRandomNumber(selected))} text="next anecdote" />
-            <Button handleClick={() => setToVotes(addVotes(props.votes={votes}, props.selected={selected}))} text="vote" />
+            <Button handleClick={() => setToVotes(selected={selected}, value=>{addVotes(selected)})} text="vote" />
         </div>
     )
 }
@@ -72,6 +70,8 @@ const anecdotes = [
     'Premature optimization is the root of all evil.',
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
 ]
+
+var votes = new Array(anecdotes.length).fill(0)
 
 ReactDOM.render(
     <App anecdotes={anecdotes} />,
