@@ -18,16 +18,38 @@ const Display = props => {
 
     return (
         <div>
-            <Statistiikka text="hyvä" value={props.good} />
-            <Statistiikka text="neutraali" value={props.neutral} />
-            <Statistiikka text="huono" value={props.bad} />
-            <Statistiikka text="yhteensä" value={total} />
-            <Statistiikka text="keskiarvo" value={ka} />
-            <Statistiikka text="positiivisia" value={pos+"%"} />
+            <table>
+                <tr>
+                    <td>hyvä</td>
+                    <td>{plus}</td>
+                </tr>
+                <tr>
+                    <td>neutraali</td>
+                    <td>{props.neutral}</td>
+                </tr>
+                <tr>
+                    <td>huono</td>
+                    <td>{miinus}</td>
+                </tr>
+                <tr>
+                    <td>yhteensä</td>
+                    <td>{total}</td>
+                </tr>
+                <tr>
+                    <td>keskiarvo</td>
+                    <td>{ka}</td>
+                </tr>
+                <tr>
+                    <td>positiivisia</td>
+                    <td>{pos}%</td>
+                </tr>
+            </table>
         </div>
     )
 }
 
+//en nyt oikeastaan tarvitse tätä lainkaan...
+//mutta ohjaaja pajassa sanoi, että pitäisi tehdä näin tehtävässä 1.10 :)
 const Statistiikka = props => {
     return (
         <div>
@@ -38,44 +60,44 @@ const Statistiikka = props => {
 
 const Button = (props) => (
     <button onClick={props.handleClick}>
-      {props.text}
+        {props.text}
     </button>
 )
 
 const App = () => {
-  // tallenna napit omaan tilaansa
-  const [good, setGood] = useState(0)
-  const [neutral, setNeutral] = useState(0)
-  const [bad, setBad] = useState(0)
+    // tallenna napit omaan tilaansa
+    const [good, setGood] = useState(0)
+    const [neutral, setNeutral] = useState(0)
+    const [bad, setBad] = useState(0)
 
-  const setToGood = newValue => {
-    setGood(newValue)
-  }
+    const setToGood = newValue => {
+        setGood(newValue)
+    }
 
-  const setToNeutral = newValue => {
-    setNeutral(newValue)
-  }
+    const setToNeutral = newValue => {
+        setNeutral(newValue)
+    }
 
-  const setToBad = newValue => {
-    setBad(newValue)
-  }
+    const setToBad = newValue => {
+        setBad(newValue)
+    }
 
-  return (
-    <div>
-      <h1>anna palautetta</h1>
-      <Button handleClick={() => setToGood(good+1)} text="hyvä" />
-      <Button handleClick={() => setToNeutral(neutral+1)} text="neutraali" />
-      <Button handleClick={() => setToBad(bad+1)} text="huono" />
+    return (
+        <div>
+            <h1>anna palautetta</h1>
+            <Button handleClick={() => setToGood(good + 1)} text="hyvä" />
+            <Button handleClick={() => setToNeutral(neutral + 1)} text="neutraali" />
+            <Button handleClick={() => setToBad(bad + 1)} text="huono" />
 
-      <h1>statistiikka</h1>
-      <div>
-          <Display good={good} neutral={neutral} bad={bad}/>
-          
-      </div>
-    </div>
-  )
+            <h1>statistiikka</h1>
+            <div>
+                <Display good={good} neutral={neutral} bad={bad} />
+
+            </div>
+        </div>
+    )
 }
 
-ReactDOM.render(<App />, 
-  document.getElementById('root')
+ReactDOM.render(<App />,
+    document.getElementById('root')
 )
