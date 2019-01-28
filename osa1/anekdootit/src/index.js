@@ -17,7 +17,7 @@ const generateRandomNumber = (value) => {
     //nyt mielestäni looppasin tämän if-lauseella niin, että tämän sattuessa
     //satunnaislukugeneraattori arpoo uuden luvun
     //mutta tätä ei-uuden-anekdootin-näyttämistä tapahtuu edelleen!
-    //ehkä netti pätkii? 
+    //ehkä netti pätkii? vai oliko tämä nyt sellainen tilanne, ettei if:iä saa käyttää?
     if (random===value) {
         return (
             generateRandomNumber(value)
