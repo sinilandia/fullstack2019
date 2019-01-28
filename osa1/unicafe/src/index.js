@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const Statistiikka = props => {
+const Display = props => {
     const total = props.good + props.neutral + props.bad
     const plus = props.good
     const miinus = props.bad
     const ka = (plus - miinus) / total
     const pos = props.good / total * 100
 
-    if (props.good === 0 && props.neutral === 0 && props.bad === 0){
+    if (props.good === 0 && props.neutral === 0 && props.bad === 0) {
         return (
             <div>
                 Ei yhtään palautetta annettu
@@ -17,17 +17,23 @@ const Statistiikka = props => {
     }
 
     return (
-        
-
         <div>
-        hyvä {props.good} <br />
-        neutraali {props.neutral}<br />
-        huono {props.bad} <br />
-        yhteensä {total} <br />
-        keskiarvo {ka}<br />
-        positiivisia {pos}%
+            <Statistiikka text="hyvä" value={props.good} />
+            <Statistiikka text="neutraali" value={props.neutral} />
+            <Statistiikka text="huono" value={props.bad} />
+            <Statistiikka text="yhteensä" value={total} />
+            <Statistiikka text="keskiarvo" value={ka} />
+            <Statistiikka text="positiivisia" value={pos+"%"} />
         </div>
-    )      
+    )
+}
+
+const Statistiikka = props => {
+    return (
+        <div>
+            {props.text} {props.value}
+        </div>
+    )
 }
 
 const Button = (props) => (
@@ -63,7 +69,8 @@ const App = () => {
 
       <h1>statistiikka</h1>
       <div>
-          <Statistiikka good={good} neutral={neutral} bad={bad} />
+          <Display good={good} neutral={neutral} bad={bad}/>
+          
       </div>
     </div>
   )
