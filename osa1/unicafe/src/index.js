@@ -7,7 +7,18 @@ const Statistiikka = props => {
     const miinus = props.bad
     const ka = (plus - miinus) / total
     const pos = props.good / total * 100
+
+    if (props.good === 0 && props.neutral === 0 && props.bad === 0){
+        return (
+            <div>
+                Ei yhtään palautetta annettu
+            </div>
+        )
+    }
+
     return (
+        
+
         <div>
         hyvä {props.good} <br />
         neutraali {props.neutral}<br />
