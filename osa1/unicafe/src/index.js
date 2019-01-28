@@ -2,11 +2,19 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 const Statistiikka = props => {
+    const total = props.good + props.neutral + props.bad
+    const plus = props.good
+    const miinus = props.bad
+    const ka = (plus - miinus) / total
+    const pos = props.good / total * 100
     return (
         <div>
         hyvä {props.good} <br />
         neutraali {props.neutral}<br />
-        huono {props.bad}
+        huono {props.bad} <br />
+        yhteensä {total} <br />
+        keskiarvo {ka}<br />
+        positiivisia {pos}%
         </div>
     )      
 }
